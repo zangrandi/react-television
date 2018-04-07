@@ -5,16 +5,6 @@ import './index.css';
 import { CHANNELS, CHANNELS_LIST } from './channels';
 import ChannelList from './list';
 
-class Button extends React.Component {
-  render() {
-    return (
-      <div className="btn btn-secondary btn-remote" onClick={() => this.props.onClick()}>
-        {this.props.number}
-      </div>
-    );
-  }
-}
-
 class Screen extends React.Component {
   render() {
     if(this.props.channel === "list") {
@@ -34,58 +24,47 @@ class Screen extends React.Component {
   };
 }
 
-class Television extends React.Component {
+class RemoteControl extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      channelNumber: null,
-      channel: null,
-      numberColor: "black"
+      isHidden: false
     }
   }
 
   renderButton(number) {
     return (
-      <Button 
-        number={number} 
-        onClick={() => this.handleClick(number)}
-      />
+      <div className="btn btn-secondary btn-remote" onClick={() => this.props.onClick(number)}>
+        {number}
+      </div>
     )
   };
 
-  handleClick(number) {
-    if(number === "IR") {
-      let channel = CHANNELS[this.state.channelNumber]
-
-      if(channel) {
-        this.setState({
-          channelNumber: null,
-          channel: channel,
-          numberColor: "white"
-        });
-      }
-    } else if(number === "☰") {
-      this.setState({
-        channelNumber: null,
-        channel: "list",
-        numberColor: "white"
-      });
-    } else if(!this.state.channelNumber || this.state.channelNumber.length > 2) {
-      this.setState({channelNumber: number});
-    } else {
-      this.setState({channelNumber: this.state.channelNumber + number});
-    }
+  renderCloseButton(number) {
+    return (
+      <div className="btn btn-secondary btn-remote" onClick={() => this.handleHideOpen()}>
+        {number}
+      </div>
+    )
   };
 
+  handleHideOpen() {
+    this.setState({isHidden: !this.state.isHidden});
+  }
+
   render() {
-    return (
-      <div id="television">
-        <Screen channel={this.state.channel} />
-
-        <div id="channelNumber" style={{color: this.state.numberColor}}>
-          {this.state.channelNumber}
+    if(this.state.isHidden) {
+      return (
+        <div id="remoteControl">
+          <div className="row justify-content-center">
+            <div className="col-xs-4 col-xs-offset-8">
+              {this.renderCloseButton("<")}
+            </div>
+          </div>
         </div>
-
+      )
+    } else {
+      return (
         <div id="remoteControl">
           <div className="row justify-content-center">
             <div className="col-xs-4">
@@ -133,8 +112,63 @@ class Television extends React.Component {
             <div className="col-xs-8">
               {this.renderButton("IR")}
             </div>
-          </div>    
+          </div>
+
+          <div className="row justify-content-center">
+            <div className="col-xs-4">
+              {this.renderCloseButton(">")}
+            </div>
+          </div>     
         </div>
+      )
+    }
+  };
+}
+
+class Television extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      channelNumber: null,
+      channel: null,
+      numberColor: "black"
+    }
+  }
+
+  handleClick(number) {
+    if(number === "IR") {
+      let channel = CHANNELS[this.state.channelNumber]
+
+      if(channel) {
+        this.setState({
+          channelNumber: null,
+          channel: channel,
+          numberColor: "white"
+        });
+      }
+    } else if(number === "☰") {
+      this.setState({
+        channelNumber: null,
+        channel: "list",
+        numberColor: "white"
+      });
+    } else if(!this.state.channelNumber || this.state.channelNumber.length > 2) {
+      this.setState({channelNumber: number});
+    } else {
+      this.setState({channelNumber: this.state.channelNumber + number});
+    }
+  };
+
+  render() {
+    return (
+      <div id="television">
+        <Screen channel={this.state.channel} />
+
+        <div id="channelNumber" style={{color: this.state.numberColor}}>
+          {this.state.channelNumber}
+        </div>
+
+        <RemoteControl onClick={(number) => this.handleClick(number)} />
       </div>
     )
   }

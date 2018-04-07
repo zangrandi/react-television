@@ -71,11 +71,11 @@ export default class ChannelList extends React.Component {
             <td> telecinepremium</td>
           </tr>
           <tr>
-            <td>122</td>
+            <td>124</td>
             <td> hbofamily</td>
           </tr>
           <tr>
-            <td>12</td>
+            <td>122</td>
             <td> hboplus</td>
           </tr>
           <tr>
