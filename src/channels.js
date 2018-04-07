@@ -21,7 +21,7 @@ export const CHANNELS = {
   "121":"http://redecanais.link/player3/servercanais.php?canal=redecanais-hbo2&img=hbo2",
   "120":"http://redecanais.link/player3/servercanais.php?canal=redecanais-hbo&img=hbo",
   "136":"http://redecanais.link/player3/servercanais.php?canal=redecanais-axn&img=axn",
-  "000":"http://redecanais.link/player3/servercanais.php?canal=redecanais-history2&img=history2",
+  // "000":"http://redecanais.link/player3/servercanais.php?canal=redecanais-history2&img=history2",
   "37":"http://redecanais.link/player3/servercanais.php?canal=redecanais-sportv3&img=sportv3",
   "38":"http://redecanais.link/player3/servercanais.php?canal=redecanais-sportv2&img=sportv2",
   "472":"http://redecanais.link/player3/servercanais.php?canal=redecanais-discoveryturbo&img=discoveryturbo",
@@ -39,8 +39,8 @@ export const CHANNELS = {
   "70":"http://redecanais.link/player3/servercanais.php?canal=redecanais-discovery&img=discovery",
   "460":"http://redecanais.link/player3/servercanais.php?canal=redecanais-cartoon&img=cartoon",
   // "000":"http://redecanais.link/player3/servercanais.php?canal=redecanais-combate&img=combate",
-  "000":"http://redecanais.link/player3/servercanaisoffice1.php",
-  "":"http://redecanais.link/player3/servercanais.php?canal=redecanais-bobo&img=bobone",
+  "":"http://redecanais.link/player3/servercanaisoffice1.php",
+  "555":"http://redecanais.link/player3/servercanais.php?canal=redecanais-bobo&img=bobone",
   "140":"http://redecanais.link/player3/servercanais.php?canal=redecanais-universal&img=universal",
   "53":"http://redecanais.link/player3/servercanais.php?canal=redecanais-disneyxd&img=disneyxd"
 }

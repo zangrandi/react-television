@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-import { CHANNELS } from './channels';
+import { CHANNELS, CHANNELS_LIST } from './channels';
+import ChannelList from './list';
 
 class Button extends React.Component {
   render() {
@@ -16,16 +17,20 @@ class Button extends React.Component {
 
 class Screen extends React.Component {
   render() {
-    return (
-      <iframe 
-        key="screen"
-        id="screen" 
-        src={this.props.channel}
-        frameBorder="0"  
-        height="100%" 
-        width="100%"
-      />
-    );
+    if(this.props.channel === "list") {
+      return <ChannelList />;
+    } else {
+      return (
+        <iframe 
+          key="screen"
+          id="screen" 
+          src={this.props.channel}
+          frameBorder="0"  
+          height="100%" 
+          width="100%"
+        />
+      );
+    }
   };
 }
 
@@ -56,10 +61,15 @@ class Television extends React.Component {
         this.setState({
           channelNumber: null,
           channel: channel,
-          numberColor: "white",
-          opacity: 0.5
+          numberColor: "white"
         });
       }
+    } else if(number === "☰") {
+      this.setState({
+        channelNumber: null,
+        channel: "list",
+        numberColor: "white"
+      });
     } else if(!this.state.channelNumber || this.state.channelNumber.length > 2) {
       this.setState({channelNumber: number});
     } else {
@@ -116,6 +126,9 @@ class Television extends React.Component {
           <div className="row justify-content-center">
             <div className="col-xs-4">
               {this.renderButton("0")}
+            </div>
+            <div className="col-xs-4">
+              {this.renderButton("☰")}
             </div>
             <div className="col-xs-8">
               {this.renderButton("IR")}
