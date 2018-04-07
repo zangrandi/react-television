@@ -104,10 +104,10 @@ class RemoteControl extends React.Component {
 
           <div className="row justify-content-center">
             <div className="col-xs-4">
-              {this.renderButton("0")}
+              {this.renderButton("☰")}
             </div>
             <div className="col-xs-4">
-              {this.renderButton("☰")}
+              {this.renderButton("0")}
             </div>
             <div className="col-xs-8">
               {this.renderButton("IR")}
